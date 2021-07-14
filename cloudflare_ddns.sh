@@ -52,7 +52,7 @@ type=A
 rec_id=
 name=
 content=
-ttl=1
+ttl=60
 proxied=false
 
 while [ "$1" != "" ]; do
@@ -141,7 +141,7 @@ fi
 if [ "$zone_id" = "" ]
 then
     echo "GET: https://api.cloudflare.com/client/v4/zones?name=$zone"
-    zone_response_json=`curl -X GET "https://api.cloudflare.com/client/v4/zones?name=$zone" -H "X-Auth-Email: $email" -H "Authorization: Bearer $key" -H "Content-Type: application/json"`
+    zone_response_json=`curl -X GET "https://api.cloudflare.com/client/v4/zones?name=$zone" -H "Authorization: Bearer $key" -H "Content-Type: application/json"`
     # echo "zone_response_json: "$zone_response_json
     echo "=========="
     zone_id=`echo $zone_response_json | sed -E "s/.+\"result\":\[\{\"id\":\"([a-f0-9]+)\"[^\}]+$zone.+/\1/g"`
