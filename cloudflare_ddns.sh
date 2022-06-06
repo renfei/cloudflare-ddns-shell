@@ -92,7 +92,7 @@ done
 
 if [ "$content" = "" ]
 then
-    content=`curl -s http://ip.renfei.net | awk -F ':"' '{print $NF}' | awk -F '"}' '{print $1}'`
+    content=`curl -s http://ip.renfei.net -H "Accept: text"`
     if [ "$content" = "" ]
     then
         date
@@ -101,7 +101,7 @@ then
     fi
     if [[ $content =~ ":" ]]
     then
-        content=`curl -s http://ipv4.renfei.net | awk -F ':"' '{print $NF}' | awk -F '"}' '{print $1}'`
+        content=`curl -s http://ipv4.renfei.net -H "Accept: text"`
         if [ "$content" = "" ]
         then
             date
